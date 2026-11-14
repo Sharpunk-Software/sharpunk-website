@@ -286,7 +286,7 @@ Two self-hosted variable fonts, both preloaded: **Outfit** (100 to 900) for ever
 
 - **Body** is Outfit Light (300) at 16px with a generous 1.65 line height. Light body text against heavy display type is the core contrast of the system.
 - **Display** is Outfit 700 for the home wordmark and the score readout, tracked tight (-0.045em, -0.03em) and set nearly solid (0.92, 0.9). The wordmark is sized in `vw` so each line fills its column (9.4vw in two columns, 16.2vw single-column, capped at 135px); line two is 0.808 of line one so both render to the same measure.
-- **Page and section headlines** drop to Outfit 500 and fluid `clamp()` sizes: page titles `clamp(3rem, 9vw, 7rem)`, the feature title `clamp(2.4rem, 6vw, 4.2rem)`, card titles `clamp(1.5rem, 2.6vw, 2.15rem)`. The italic `<em>` in page titles carries a violet-to-pale gradient clipped to text.
+- **Page and section headlines** drop to Outfit 500 and fluid `clamp()` sizes: page titles `clamp(3rem, 9vw, 7rem)`, the feature title `clamp(2.4rem, 6vw, 4.2rem)`, card titles `clamp(1.5rem, 2.6vw, 2.15rem)`. The italic `<em>` in page titles carries a violet-to-pale gradient clipped to text. Give that `<em>` `padding-right: .14em; margin-right: -.06em`: an italic glyph leans past its own box, and `background-clip: text` only paints inside the box, so without the padding the last character ("13/11" -> "13/1") is cut off.
 - **Labels** are uppercase and tracked wide: buttons 14px / 700 / 0.12em, the brand wordmark 14px / 700 / 0.18em.
 - **Mono** is always small and uppercase with wide tracking. Labels use two trackings only: 0.16em for inline labels (credits, footer, chips) and 0.24em for eyebrows (the score labels, the /games/ kind line). Metadata (the copyable email, site-card hosts) is 12px at 0.1em. The game HUD is the exception: 15px bold at 0.06em, for legibility on a moving scene. Score figures use tabular numerals so they never reflow.
 
@@ -350,3 +350,4 @@ Tokens, fonts, the aurora, glass, nav, page head, footer, email button, link pil
 - Don't put the top highlight on pill-shaped glass.
 - Don't repaint large, frequently changing text on top of `backdrop-filter`; the score readout is deliberately not glass.
 - Don't set text below 11px; the 8px ribbon is the one existing exception and should not spread.
+- Don't clip an italic to a gradient (`background-clip: text`) without right padding (`.14em`, offset by `margin-right: -.06em`): the slanted last glyph overhangs the box and gets cut.
